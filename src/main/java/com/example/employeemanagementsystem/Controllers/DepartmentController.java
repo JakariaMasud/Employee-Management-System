@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class DepartmentController {
     DepartmentService departmentService;
@@ -49,6 +51,11 @@ public class DepartmentController {
     @GetMapping("/deleteDepartment/{deptId}")
     public String deleteDept(@PathVariable("deptId") Integer deptId, Model model){
         departmentService.deleteDepartment(deptId);
+        model.addAttribute("departments",departmentService.departments());
+        return "department-list";
+    }
+    @GetMapping("/allDepartment")
+    public String allDepartment(Model model){
         model.addAttribute("departments",departmentService.departments());
         return "department-list";
     }

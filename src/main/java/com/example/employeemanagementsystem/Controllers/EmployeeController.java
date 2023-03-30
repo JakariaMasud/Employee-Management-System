@@ -52,7 +52,7 @@ public class EmployeeController {
         return "employee-list";
     }
 
-    @GetMapping("/allEmployee")
+    @GetMapping(value = {"/allEmployee","/"})
     public String allEmployee(Model model) {
         List<Employee> employeeList = employeeService.getAllEmployee();
         model.addAttribute("employees", employeeList);
